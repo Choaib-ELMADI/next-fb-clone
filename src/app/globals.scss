@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'facebook_letter_facesregular';
+    src: url('localhost:3000/src/css/facebolf.woff2') format('woff2'),
+         url('localhost:3000/src/css/facebolf.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'helveticaregular';
+    src: url('localhost:3000/src/css/helvetica.woff2') format('woff2'),
+         url('localhost:3000/src/css/helvetica.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --main_background_color: #f2f4f7;
+    --main_bleu_color:       #0178fd;
+    --main_green_color:      #00b501;
+    --white_color:           #ffffff;
+    --black_color:           #272b32;
+    --gray_color:            #969ba0;
+
+    --main_font:             'helveticaregular', sans-serif;
+    --main_logo_font:        'facebook_letter_facesregular', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main_font);
+}
+
+body {
+    background: var(--main_background_color);
+}

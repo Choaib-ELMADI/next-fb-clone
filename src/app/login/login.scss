@@ -1,0 +1,41 @@
+.login-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+
+    .welcoming {
+        background: red;
+        width: 100%;
+    }
+    
+    .form-wrapper {
+        background: blue;
+        display: grid;
+        place-items: center;
+        width: 100%;
+
+        form {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+
+            .input-field {
+                width: 90%;
+                margin: 0 auto;
+
+                input {
+                    width: 100%;
+                }
+            }
+
+            button {
+                width: 90%;
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
