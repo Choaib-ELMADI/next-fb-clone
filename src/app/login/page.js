@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
@@ -12,6 +13,7 @@ import './login.scss';
 
 export default function Login() {
     const [userData, setUserData] = useState({});
+    const router = useRouter();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,6 +35,8 @@ export default function Login() {
                     email: user.email,
                     photo: user.photoURL
                 });
+
+                router.push('/');
             })
             .catch((err) => {
                 console.error(err);
@@ -52,6 +56,8 @@ export default function Login() {
                     email: user.email,
                     photo: user.photoURL
                 });
+
+                router.push('/');
             })
             .catch((err) => {
                 console.error(err);
