@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { collection, addDoc } from "firebase/firestore"; 
 
-import { auth, provider } from '@/config/firebase';
+import { auth, provider, db } from '@/config/firebase';
 import './login.scss';
 
 
@@ -21,30 +22,45 @@ export default function Login() {
         setUserData({ ...userData, [name]: value });
     };
 
-    const handleSubmitForm = async (e) => {
+    const handleSubmitForm = (e) => {
         e.preventDefault();
 
-        try {
-            const userCredentials = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
-            const user = userCredentials.user;
-            console.log("User: ", user);
-        }
-        catch(err) {
-            console.error(err);
-        }
+        createUserWithEmailAndPassword(auth, userData.email, userData.password)
+            .then((userCredentials) => {
+                const user = userCredentials.user;
+                return user;
+            })
+            .then((user) => {
+                addDoc(collection(db, "users"), {
+                    id: user.uid,
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL
+                });
+            })
+            .catch((err) => {
+                console.error(err);
+            })
     };
 
     const signInWithGoogle = () => {
         signInWithPopup(auth, provider)
-            .then((result) => {
-                const user = result.user;
-                console.log("Google User: ", user.email);
-            }).catch((err) => {
+            .then((userCredentials) => {
+                const user = userCredentials.user;
+                return user;
+            })
+            .then((user) => {
+                addDoc(collection(db, "users"), {
+                    id: user.uid,
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL
+                });
+            })
+            .catch((err) => {
                 console.error(err);
             });
     };
-
-    { console.log("Current User: ", auth?.currentUser?.email); }
 
     return (
         <div className='login-page'>
