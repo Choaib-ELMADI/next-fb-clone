@@ -19,8 +19,9 @@
     --main_bleu_color:       #0178fd;
     --main_green_color:      #00b501;
     --white_color:           #ffffff;
-    --black_color:           #272b32;
-    --gray_color:            #969ba0;
+    --black_color:           #1c1e21;
+    --gray_color_1:          #969ba0;
+    --gray_color_2:          rgba(150, 155, 160, .6);
 
     --main_font:             'helveticaregular', sans-serif;
     --main_logo_font:        'facebook_letter_facesregular', sans-serif;
@@ -33,6 +34,12 @@
     font-family: var(--main_font);
 }
 
-body {
+html {
     background: var(--main_background_color);
+}
+
+body {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
