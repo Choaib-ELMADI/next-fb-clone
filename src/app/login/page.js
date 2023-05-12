@@ -10,10 +10,6 @@ import './login.scss';
 
 
 
-export const metadata = {
-    title: 'Facebook - Connexion ou inscription',
-};
-
 export default function Login() {
     const [userData, setUserData] = useState({});
 
