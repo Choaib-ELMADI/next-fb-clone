@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { collection, addDoc } from "firebase/firestore"; 
 
@@ -12,7 +13,11 @@ import './login.scss';
 
 
 export default function Login() {
-    const [userData, setUserData] = useState({});
+    const [userData, setUserData] = useState({
+        email: '',
+        password: '',
+    });
+    const [inputTypeChecked, setInputTypeChecked] = useState(false);
     const router = useRouter();
 
     const handleChange = (e) => {
@@ -82,13 +87,28 @@ export default function Login() {
                         onChange={ handleChange }
                         required 
                     />
-                    <input 
-                        name='password'
-                        type='password' 
-                        placeholder='Password' 
-                        onChange={ handleChange }
-                        required 
-                    />
+                    <div style={{ position: 'relative' }}>
+                        <input 
+                            name='password'
+                            type= { inputTypeChecked ? 'text' : 'password' } 
+                            placeholder='Password' 
+                            onChange={ handleChange }
+                            required 
+                        />
+                        <span 
+                            className='switch-input-type'
+                            style={{
+                                display: userData.password === '' ? 'none' : 'grid',
+                            }}
+                            onClick={ () => setInputTypeChecked(s => !s) }
+                        >
+                            { 
+                                !inputTypeChecked ? 
+                                <AiOutlineEye size={ 18 } /> : 
+                                <AiOutlineEyeInvisible size={ 18 } /> 
+                            }
+                        </span>
+                    </div>
                     <button type='submit'>Se connecter</button>
                 </form>
 

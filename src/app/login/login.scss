@@ -87,6 +87,22 @@
                 }
             }
 
+            .switch-input-type {
+                position: absolute;
+                top: 50%;
+                right: .5rem;
+                transform: translateY(-50%);
+                padding: .25rem;
+                border-radius: 50%;
+                place-items: center;
+                cursor: pointer;
+                transition: .3s;
+                
+                &:hover {
+                    background: var(--gray_color_2);
+                }
+            }
+
             button {
                 width: 100%;
                 text-align: center;
