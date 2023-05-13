@@ -13,7 +13,9 @@ export default function RootLayout({ children }) {
       <head>
         <link rel='shortcut icon' href='/favicon/facebook.png'></link>
       </head>
-      <body>{ children }</body>
+      <body>
+        { children }
+      </body>
     </html>
   );
 };
