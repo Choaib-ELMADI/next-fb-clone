@@ -38,7 +38,7 @@ const Notification = () => {
         {
           filteredNotifications.length < 1 &&
           <div className='no-notif'>
-            <FaBell size={ 100 } />
+            <FaBell size={ 80 } />
             <h3>
               Vous n'avez aucune notification
             </h3>

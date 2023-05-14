@@ -18,7 +18,7 @@ import { FaBell } from 'react-icons/fa';
 import './Navbar.scss';
 import images from '../../constants/images';
 import Searchbar from '../SearchBar/Searchbar';
-import { Notification } from '../index';
+import { Notification, Messenger } from '../index';
 
 const links = [
     {
@@ -145,6 +145,7 @@ const Navbar = () => {
                 }
             </div>
             { clickedButton === 'notifications' && <Notification /> }
+            { clickedButton === 'messenger' && <Messenger /> }
         </nav>
     );
 };
