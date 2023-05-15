@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { IoSettingsSharp } from 'react-icons/io5';
+import { IoSettingsSharp, IoLogOut } from 'react-icons/io5';
 import { BsChevronRight } from 'react-icons/bs';
-// import { BsFillQuestionCircleFill }
+import { BsFillQuestionCircleFill, BsFillMoonFill } from 'react-icons/bs';
 
 import './Profile.scss';
 import images from '@/constants/images';
@@ -12,35 +12,46 @@ import images from '@/constants/images';
 const Profile = () => {
   return (
     <div className='profile-container'>
-        <Link href='/' className='header'>
-            <Image 
-                className='image'
-                src={ images.choaib }
-                alt='Choaib ELMADI'
-            />
-            <p>Choaib Elmadi JS</p>
-        </Link>
+        <div className='profiles'>
+            <Link href='/' className='header'>
+                <Image 
+                    className='image'
+                    src={ images.choaib }
+                    alt='Choaib ELMADI'
+                />
+                <p>Choaib Elmadi JS</p>
+            </Link>
+            <div className='line' />
+            <button>Voir tous les profiles</button>
+        </div>
+        
         <div className='parameters'>
             <div className='param'>
                 <div className='icon'>
                     <IoSettingsSharp size={ 20 } />
                 </div>
                 <p>Paramètres et confidentialité</p>
-                <BsChevronRight size={ 22 } />
+                <BsChevronRight className='chevron' size={ 22 } />
             </div>
             <div className='param'>
                 <div className='icon'>
-                    <IoSettingsSharp size={ 20 } />
+                    <BsFillQuestionCircleFill size={ 18 } />
                 </div>
-                <p>Paramètres et confidentialité</p>
-                <BsChevronRight size={ 22 } />
+                <p>Aide et assistance</p>
+                <BsChevronRight className='chevron' size={ 22 } />
             </div>
             <div className='param'>
                 <div className='icon'>
-                    <IoSettingsSharp size={ 20 } />
+                    <BsFillMoonFill size={ 20 } />
                 </div>
-                <p>Paramètres et confidentialité</p>
-                <BsChevronRight size={ 22 } />
+                <p>Affichage et accessibilité</p>
+                <BsChevronRight className='chevron' size={ 22 } />
+            </div>
+            <div className='param'>
+                <div className='icon'>
+                    <IoLogOut size={ 22 } />
+                </div>
+                <p>Se déconnecter</p>
             </div>
         </div>
     </div>
