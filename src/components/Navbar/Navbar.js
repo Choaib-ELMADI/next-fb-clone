@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { 
     AiFillHome, AiOutlineHome,
@@ -14,11 +14,13 @@ import { IoGameController, IoGameControllerOutline } from 'react-icons/io5';
 import { TbGridDots } from 'react-icons/tb';
 import { BsMessenger } from 'react-icons/bs';
 import { FaBell } from 'react-icons/fa';
+import { collection } from 'firebase/firestore';
 
 import './Navbar.scss';
 import images from '../../constants/images';
 import Searchbar from '../SearchBar/Searchbar';
-import { Notification, Messenger } from '../index';
+import { Notification, Messenger, Profile } from '../index';
+import { auth, db } from '@/config/firebase';
 
 const links = [
     {
@@ -66,15 +68,6 @@ const buttons = [
         name: 'notifications',
         icon: <FaBell size={ 20 } />,
     },
-    {
-        name: 'profile',
-        icon: <Image
-                className='image'
-                src={ images.choaib }
-                alt='Choaib ELMADI'
-                draggable={ false }
-        />,
-    },
 ];
 
 
@@ -91,6 +84,10 @@ const Navbar = () => {
             setClickedButton(name);
         }
     };
+
+    useEffect(() => {
+
+    }, []);
 
     return (
         <nav className="navbar">
@@ -143,9 +140,22 @@ const Navbar = () => {
                         )
                     })
                 }
+                <div
+                    className={ clickedButton === 'profile' ? 'active' : '' }
+                    onClick={ () => handleChoosedButton('profile') }
+                >
+                    <Image
+                        className='image'
+                        width={ 40 }
+                        height={ 40 }
+                        alt={ auth.currentUser ? auth.currentUser.displayName : 'user' }
+                        src={ images.choaib }
+                    />
+                </div>
             </div>
             { clickedButton === 'notifications' && <Notification /> }
             { clickedButton === 'messenger' && <Messenger /> }
+            { clickedButton === 'profile' && <Profile /> }
         </nav>
     );
 };
