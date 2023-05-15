@@ -85,10 +85,6 @@ const Navbar = () => {
         }
     };
 
-    useEffect(() => {
-
-    }, []);
-
     return (
         <nav className="navbar">
             <div className='search-section'>
@@ -149,7 +145,7 @@ const Navbar = () => {
                         width={ 40 }
                         height={ 40 }
                         alt={ auth.currentUser ? auth.currentUser.displayName : 'user' }
-                        src={ images.choaib }
+                        src={ images.user_1 }
                     />
                 </div>
             </div>
