@@ -14,13 +14,12 @@ import { IoGameController, IoGameControllerOutline } from 'react-icons/io5';
 import { TbGridDots } from 'react-icons/tb';
 import { BsMessenger } from 'react-icons/bs';
 import { FaBell } from 'react-icons/fa';
-import { collection } from 'firebase/firestore';
 
 import './Navbar.scss';
 import images from '../../constants/images';
 import Searchbar from '../SearchBar/Searchbar';
-import { Notification, Messenger, Profile } from '../index';
-import { auth, db } from '@/config/firebase';
+import { auth } from '@/config/firebase';
+import { Notification, Messenger, Profile, Menu } from '../index';
 
 const links = [
     {
@@ -152,6 +151,7 @@ const Navbar = () => {
             { clickedButton === 'notifications' && <Notification /> }
             { clickedButton === 'messenger' && <Messenger /> }
             { clickedButton === 'profile' && <Profile /> }
+            { clickedButton === 'menu' && <Menu /> }
         </nav>
     );
 };
