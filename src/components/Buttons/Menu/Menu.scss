@@ -11,7 +11,23 @@
         display: flex;
         gap: 1rem;
         margin-top: 1rem;
+        height: 475px;
+        overflow-y: scroll;
 
+        &::-webkit-scrollbar {
+            display: none;
+            position: absolute;
+            right: -.5rem;
+            z-index: 10;
+            width: 8px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: var(--gray_color_2);
+            border-radius: 8px;
+        }
+        &:hover::-webkit-scrollbar {
+            display: initial;
+        }
 
         .left-container {
             background: var(--white_color);
@@ -19,6 +35,7 @@
             border-radius: 8px;
             width: 340px;
             border: 1px solid rgba(0, 0, 0, .1);
+            height: 2000px;
         }
         
         .right-container {
@@ -27,23 +44,48 @@
             border-radius: 8px;
             width: 200px;
             border: 1px solid rgba(0, 0, 0, .1);
+            position: sticky;
+            height: max-content;
+            top: 0;
 
             ul {
                 margin-top: .5rem;
                 list-style: none;
+                color: var(--black_color);
                 
                 li {
                     font-size: 15px;
                     font-weight: 600;
                     padding: .5rem;
                     border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
                     transition: .3s;
+                    cursor: pointer;
 
                     &:hover {
                         background: var(--gray_color_3);
                     }
+
+                    .icon {
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 50%;
+                        background: var(--main_background_color);
+                        display: grid;
+                        place-items: center;
+                    }
                 }
                 
+            }
+
+            .line {
+                width: 94%;
+                margin-inline: auto;
+                margin-block: .5rem;
+                height: 1px;
+                background: var(--gray_color_3);
             }
         }
     }
