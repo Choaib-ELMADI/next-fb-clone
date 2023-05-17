@@ -32,7 +32,80 @@
             border-radius: 8px;
             width: 340px;
             border: 1px solid rgba(0, 0, 0, .1);
-            height: 2000px;
+            height: max-content;
+            min-height: 472px;
+
+            .search {
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+                height: 35px;
+                padding: .5rem;
+                margin-bottom: 1rem;
+                background: var(--main_background_color);
+                color: var(--gray_color);
+                border-radius: 20px;
+    
+                input {
+                    font-size: 15px;
+                    background: transparent;
+                    border: 0;
+                    outline: none;
+                }
+            }
+
+            .search-results {
+                .no-result {
+                    margin-top: 2rem;
+                    text-align: center;
+                    color: var(--gray_color);
+
+                    h3 {
+                        margin-top: 1rem;
+                        margin-bottom: .5rem;
+                    }
+                }
+
+                .results {
+                    .category-container {
+                        margin-bottom: 1rem;
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                        
+                        .category-title {
+                            font-weight: 500;
+                            margin-bottom: .5rem;
+                        }
+
+                        .item {
+                            padding: .5rem;
+                            border-radius: 8px;
+                            display: flex;
+                            gap: 1rem;
+                            transition: .3s;
+
+                            &:hover {
+                                background: var(--gray_color_3);
+                            }
+
+                            .info {
+                                h3 {
+                                    font-size: 15px;
+                                    font-weight: 600;
+                                    color: var(--black_color);
+                                }
+
+                                p {
+                                    margin-top: .25rem;
+                                    font-size: 14px;
+                                    color: var(--gray_color);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         
         .right-container {
