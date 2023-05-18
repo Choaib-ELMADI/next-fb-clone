@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { 
     AiFillHome, AiOutlineHome,
@@ -75,10 +75,11 @@ const Navbar = () => {
     const [vueSearchList, setVueSearchList] = useState(false);
     const [activeLink, setActiveLink] = useState('home');
     const [clickedButton, setClickedButton] = useState(null);
+    
 
     const handleChoosedButton = (name) => {
         if (clickedButton === name) {
-            setClickedButton(null)
+            setClickedButton(null);
         } else {
             setClickedButton(name);
         }
@@ -148,7 +149,7 @@ const Navbar = () => {
                     />
                 </div>
             </div>
-            { clickedButton === 'notifications' && <Notification /> }
+            { clickedButton === 'notifications' && <Notification  /> }
             { clickedButton === 'messenger' && <Messenger /> }
             { clickedButton === 'profile' && <Profile /> }
             { clickedButton === 'menu' && <Menu /> }
