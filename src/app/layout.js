@@ -1,4 +1,5 @@
 import './globals.scss';
+import { AuthProvider } from "@/context/AuthContext";
 
 
 
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
         <link rel='shortcut icon' href='/favicon/facebook.png'></link>
       </head>
       <body>
-        { children }
+        <AuthProvider>
+          { children }
+        </AuthProvider>
       </body>
     </html>
   );

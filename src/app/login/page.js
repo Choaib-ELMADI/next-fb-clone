@@ -42,7 +42,7 @@ export default function Login() {
                     photo: user.photoURL
                 });
 
-                router.push('/');
+                // router.push('/');
             })
             .catch((err) => {
                 console.error(err);
@@ -63,7 +63,7 @@ export default function Login() {
                     photo: user.photoURL
                 });
 
-                router.push('/');
+                // router.push('/');
             })
             .catch((err) => {
                 console.error(err);
@@ -84,12 +84,12 @@ export default function Login() {
                     photo: user.photoURL
                 });
 
-                router.push('/');
+                // router.push('/');
             })
             .catch((err) => {
                 console.error(err);
             });
-    }
+    };
 
     return (
         <div className='login-page'>
