@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { IoTelescope } from 'react-icons/io5';
 import { FaCalendarPlus } from 'react-icons/fa';
-import { BsFillPeopleFill, BsFillSaveFill, BsFillStarFill, BsFillCollectionPlayFill, BsMessenger } from "react-icons/bs";
+import { BsFillPeopleFill, BsFillSaveFill, BsFillStarFill, BsFillPlayBtnFill, BsMessenger } from "react-icons/bs";
 import { HiUserGroup } from "react-icons/hi";
 import { BiJoystickAlt } from "react-icons/bi";
 import { GiGamepadCross, GiBackwardTime } from 'react-icons/gi';
@@ -16,31 +16,31 @@ const menuItems = [
     category: 'Social',
     items: [
       {
-        icon: <FaCalendarPlus color="#e74a66" size={ 30 } />,
+        icon: <FaCalendarPlus color="#e74a66" size={ 26 } />,
         title: 'Evènements',
         description: 'Velit sunt exercitation exercitation excepteur consequat ea qui incididunt.',
         link: 'link'
       },
       {
-        icon: <BsFillPeopleFill color='#1a7fe9' size={ 30 } />,
+        icon: <BsFillPeopleFill color='#1a7fe9' size={ 26 } />,
         title: 'Amis',
         description: 'Velit sunt exercitation exercitation excepteur consequat ea qui incididunt.',
         link: 'link'
       },
       {
-        icon: <HiUserGroup color='#1a7fe9' size={ 30 } />,
+        icon: <HiUserGroup color='#1a7fe9' size={ 26 } />,
         title: 'Groupes',
         description: 'Velit sunt exercitation exercitation excepteur consequat ea qui incididunt.',
         link: 'link'
       },
       {
-        icon: <FaCalendarPlus color='#1a7fe9' size={ 30 } />,
+        icon: <FaCalendarPlus color='#1a7fe9' size={ 26 } />,
         title: "Fil d'actualité",
         description: 'Velit sunt exercitation exercitation excepteur consequat ea qui incididunt.',
         link: 'link'
       },
       {
-        icon: <BsFillStarFill color='#e9b330' size={ 30 } />,
+        icon: <BsFillStarFill color='#e9b330' size={ 26 } />,
         title: 'Favoris',
         description: 'View posts by favorites.',
         link: 'link'
@@ -63,7 +63,7 @@ const menuItems = [
         link: 'link'
       },
       {
-        icon: <BsFillCollectionPlayFill color='#1a7fe9' size={ 22 } />,
+        icon: <BsFillPlayBtnFill color='#1a7fe9' size={ 24 } />,
         title: 'Watch',
         description: 'Velit sunt exercitation exercitation excepteur consequat ea qui incididunt.',
         link: 'link'
@@ -97,7 +97,7 @@ const menuItems = [
     category: 'Autres produits de Meta',
     items: [
       {
-        icon: <BsMessenger color='#6ec299' size={ 30 } />,
+        icon: <BsMessenger color='#6ec299' size={ 26 } />,
         title: 'Messenger Kids',
         description: 'Velit sunt exercitation exercitation excepteur consequat ea qui incididunt. Velit sunt exercitation exercitation excepteur conse.',
         link: 'link'
@@ -109,16 +109,18 @@ const menuItems = [
 
 
 const Left = () => {
-  const [filteredItems, setFilteredItems] = useState(menuItems);
   const [search, setSearch] = useState('');
+  const [filteredItems, setFilteredItems] = useState(menuItems);
 
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-
-    // setFilteredItems(filteredItems.filter(item => (
-    //   item.category.startsWith(search)
-    // )))
-  }
+  const handleSearch = () => {
+    setFilteredItems(
+      menuItems.filter(item => {
+        return search.toLowerCase() === ' ' ?
+        item :
+        item.category.toLowerCase().includes(search.toLowerCase())
+      })
+    );
+  };
 
   return (
     <div className="left-container">
@@ -127,7 +129,10 @@ const Left = () => {
         <input 
           type="text" 
           placeholder="Rechercher dans le menu"
-          onChange={ handleSearch }
+          onChange={ (e) => {
+            setSearch(e.target.value);
+            handleSearch();
+          }}
           value={ search }
         />
       </div>
@@ -144,7 +149,7 @@ const Left = () => {
           filteredItems.length >= 1 &&
           <div className="results">
             {
-              filteredItems.map((category, i) => (
+              filteredItems.map((category) => (
                 <div className="category-container" key={ category.category }>
                   <h3 className="category-title">{ category.category }</h3>
                   {
