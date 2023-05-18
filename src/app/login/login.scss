@@ -138,11 +138,6 @@
             justify-content: center;
             gap: 1.5rem;
             cursor: pointer;
-            transition: .3s;
-
-            &:hover {
-                background: var(--gray_color_2);
-            }
         }
     }
 }

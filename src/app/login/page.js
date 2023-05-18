@@ -3,11 +3,12 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
+import { FaFacebook } from 'react-icons/fa';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { collection, addDoc } from "firebase/firestore"; 
 
-import { auth, provider, db } from '@/config/firebase';
+import { auth, googleProvider, facebookProvider, db } from '@/config/firebase';
 import './login.scss';
 
 
@@ -49,7 +50,7 @@ export default function Login() {
     };
 
     const signInWithGoogle = () => {
-        signInWithPopup(auth, provider)
+        signInWithPopup(auth, googleProvider)
             .then((userCredentials) => {
                 const user = userCredentials.user;
                 return user;
@@ -68,6 +69,27 @@ export default function Login() {
                 console.error(err);
             });
     };
+
+    const signInWithFacebook = () => {
+        signInWithPopup(auth, facebookProvider)
+            .then((userCredentials) => {
+                const user = userCredentials.user;
+                return user;
+            })
+            .then((user) => {
+                addDoc(collection(db, "users"), {
+                    id: user.uid,
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL
+                });
+
+                router.push('/');
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }
 
     return (
         <div className='login-page'>
@@ -115,7 +137,16 @@ export default function Login() {
                 <div className='line' />
 
                 <button
+                    onClick={ signInWithFacebook }
+                    style={{ background: '#0177fd33' }}
+                >
+                    <FaFacebook color='#0178fd' size={ 25 } />
+                    Se connecter avec Facebook
+                </button>
+
+                <button
                     onClick={ signInWithGoogle }
+                    style={{ background: 'rgba(252, 85, 10, .2)' }}
                 >
                     <FcGoogle size={ 25 } />
                     Se connecter avec Google
